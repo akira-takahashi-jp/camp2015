@@ -15,8 +15,8 @@ class ItemsController extends Controller {
 		$this->item = $item;
 	}
 
-	public function getCreate($projectId){
-		return view('items.create')->with(compact('projectId'));
+	public function getCreate(){
+		return view('items.create');
 	}
 
 	public function postCreate(Request $request, $projectId){
@@ -24,7 +24,7 @@ class ItemsController extends Controller {
 		$this->item->fill($data);
 		$this->item->project_id = $projectId;
 		$this->item->save();
-		return redirect()->to('projects/index');
+		return redirect()->to("projects/show/{$projectId}");
 	}
 
 }

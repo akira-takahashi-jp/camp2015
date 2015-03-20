@@ -36,4 +36,29 @@
 	</tr>
 	</tbody>
 </table>
-@endsection
+<h3>項目一覧</h3>
+
+<ul class="list-inline">
+	<li>
+		<a href="/items/create/{{{ $project->id }}}" class="btn btn-primary pull-left">項目作成</a>
+	</li>
+</ul><table class="table table-striped table-hover">
+	<thead>
+	<tr>
+		<th>項目名</th>
+		<th>作成日時</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach($project->items as $item)
+	<tr>
+		<td><a href="/items/show/{{{ $item->id }}}">{{{ $item->name }}}</a></td>
+		<td>{{{ $item->created_at }}}</td>
+		<td>
+			<a href="/items/edit/{{{ $item->id }}}">編集</a>
+		</td>
+	</tr>
+	@endforeach
+	</tbody>
+</table>@endsection
