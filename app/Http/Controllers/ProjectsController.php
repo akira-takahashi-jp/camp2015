@@ -46,6 +46,8 @@ class ProjectsController extends Controller {
 		$data = $request->all();
 		$project->fill($data);
 		$project->save();
+		$project->userDefinition->fill($data);
+		$project->userDefinition->save();
 		return redirect()->to('projects/index');
 	}
 
