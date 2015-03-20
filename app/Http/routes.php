@@ -24,3 +24,4 @@ Route::controllers([
 
 Route::get('/', 'ProjectsController@getIndex');
 Route::controller('projects', 'ProjectsController');
+Route::controller('items', 'ItemsController');

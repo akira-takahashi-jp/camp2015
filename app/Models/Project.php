@@ -1,7 +1,6 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\UserDefinition;
 
 class Project extends Model {
 
@@ -9,6 +8,10 @@ class Project extends Model {
 
 	public function userDefinition(){
 		return $this->hasOne('App\Models\UserDefinition');
+	}
+
+	public function items(){
+		return $this->hasMany('App\Models\Item');
 	}
 
 }

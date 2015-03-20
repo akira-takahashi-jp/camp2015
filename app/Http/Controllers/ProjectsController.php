@@ -1,10 +1,14 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\UserDefinition;
+use App\Models\Item;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Symfony\Component\Security\Core\User\User;
 
 class ProjectsController extends Controller {
 
@@ -46,8 +50,9 @@ class ProjectsController extends Controller {
 		$data = $request->all();
 		$project->fill($data);
 		$project->save();
-		$project->userDefinition->fill($data);
-		$project->userDefinition->save();
+		$userDefinition = new UserDefinition();
+		$userDefinition->fill($data);
+		$project->userDefinition()->save($userDefinition);
 		return redirect()->to('projects/index');
 	}
 
