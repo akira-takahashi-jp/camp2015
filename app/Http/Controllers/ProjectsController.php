@@ -2,7 +2,6 @@
 
 use App\Models\Project;
 use App\Models\UserDefinition;
-use App\Models\Item;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -20,7 +19,7 @@ class ProjectsController extends Controller {
 
 	public function getIndex(){
 		$projects = $this->project->all();
-		return view('projects.index')->with(compact('projects'));
+		return view('projects.index', compact('projects'));
 	}
 
 	public function getShow($id){
@@ -33,25 +32,20 @@ class ProjectsController extends Controller {
 	}
 
 	public function postCreate(Request $request){
-		$data = $request->all();
-		$this->project->fill($data);
-		$this->project->save();
-
-		return redirect()->to('projects/index');
+		$this->project->fill($request->all())->save();
+		return redirect('projects/index');
 	}
 
 	public function getEdit($id){
 		$project = $this->project->find($id);
-		return view('projects.edit')->withproject($project);
+		return view('projects.edit', compact('project'));
 	}
 
 	public function postEdit(Request $request, $id){
 		$project = $this->project->find($id);
-		$data = $request->all();
-		$project->fill($data);
-		$project->save();
+		$project->fill($request->all())->save();
 		$userDefinition = new UserDefinition();
-		$userDefinition->fill($data);
+		$userDefinition->fill($request->all());
 		$project->userDefinition()->save($userDefinition);
 		return redirect()->to('projects/index');
 	}
