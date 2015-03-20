@@ -20,11 +20,22 @@ class ItemsController extends Controller {
 	}
 
 	public function postCreate(Request $request, $projectId){
-		$data = $request->all();
-		$this->item->fill($data);
+		$this->item->fill($request->all());
 		$this->item->project_id = $projectId;
 		$this->item->save();
-		return redirect()->to("projects/show/{$projectId}");
+		return redirect("projects/show/{$projectId}");
 	}
+
+	public function getEdit($id){
+		$item = $this->item->find($id);
+		return view('items.edit', compact('item'));
+	}
+
+	public function postEdit(Request $request, $id){
+		$item = $this->item->find($id);
+		$item->fill($request->all())->save();
+		return redirect("projects/show/{$item->project_id}");
+	}
+
 
 }
