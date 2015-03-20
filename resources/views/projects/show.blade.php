@@ -23,8 +23,16 @@
 		<td>{{{ $project->name }}}</td>
 	</tr>
 	<tr>
+		<th>ユーザDBのテーブル名</th>
+		<td>{{{ $project->userDefinition ? $project->userDefinition->table_name : null }}}</td>
+	</tr>
+	<tr>
+		<th>ユーザDBのカラム名</th>
+		<td>{{{ $project->userDefinition ? $project->userDefinition->column_name : null }}}</td>
+	</tr>
+	<tr>
 		<th>更新日時</th>
-		<td>{{{ $project->created_at }}}</td>
+		<td>{{{ $project->updated_at }}}</td>
 	</tr>
 	</tbody>
 </table>
