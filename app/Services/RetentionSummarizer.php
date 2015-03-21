@@ -70,8 +70,11 @@ class RetentionSummarizer
 			->where($userDefinition->date_column, '<', $this->getNextUserGroupDate($date))
 			->count();
 
-		$userGroup = new UserGroup();
-		$userGroup->user_grouping_date = $date;
+		$userGroup = UserGroup::where('item_id', $this->item->id)->where('user_grouping_date', $date)->first();
+		if(!$userGroup){
+			$userGroup = new UserGroup();
+			$userGroup->user_grouping_date = $date;
+		}
 		$userGroup->value = $value;
 		return $this->item->userGroups()->save($userGroup);
 
@@ -99,8 +102,11 @@ class RetentionSummarizer
 			->count(DB::raw("DISTINCT $activityTable.{$this->item->user_id_column}"))
 			;
 
-		$retentionData = new RetentionData();
-		$retentionData->sequence = $sequence;
+		$retentionData = RetentionData::where('user_group_id', $userGroup->id)->where('sequence', $sequence)->first();
+		if(!$retentionData){
+			$retentionData = new RetentionData();
+			$retentionData->sequence = $sequence;
+		}
 		$retentionData->value = $value;
 		$userGroup->retentionDatas()->save($retentionData);
 			//->get();
