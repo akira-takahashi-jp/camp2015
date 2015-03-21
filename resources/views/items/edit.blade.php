@@ -21,6 +21,6 @@
 	<label>基底日</label>
 	{!! Form::input('date', 'start_date', $item->start_date, ['class' => 'form-control']) !!}
 </div>
-<button type="submit" class="btn btn-default">更新</button>
+<button type="submit" class="btn btn-default">表示</button>
 {!! Form::close() !!}
 @endsection

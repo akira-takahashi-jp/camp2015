@@ -53,7 +53,7 @@
 	<tbody>
 	@foreach($project->items as $item)
 	<tr>
-		<td><a href="/items/show/{{{ $item->id }}}">{{{ $item->name }}}</a></td>
+		<td><a href="/items/report/{{{ $item->id }}}">{{{ $item->name }}}</a></td>
 		<td>{{{ $item->created_at }}}</td>
 		<td>
 			<a href="/items/edit/{{{ $item->id }}}">編集</a>
