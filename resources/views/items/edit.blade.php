@@ -15,11 +15,11 @@
 	<label>日付カラム名</label>
 	{!! Form::input('text', 'date_column', $item->date_column, ['required', 'class' => 'form-control']) !!}
 	<label>リテンション期間</label>
-	{!! Form::input('number', 'retention_span', $item->retention_span, ['required', 'class' => 'form-control']) !!}
+	{!! Form::select('retention_span_type', $item::$retentionSpanTypeAttr, $item->retention_span_type, ['required', 'class' => 'form-control']) !!}
 	<label>ユーザグルーピング期間</label>
-	{!! Form::input('number', 'user_grouping_span', $item->user_grouping_span, ['required', 'class' => 'form-control']) !!}
-	<label>開始日</label>
-	{!! Form::input('date', 'start_date', $item->start_date, ['required', 'class' => 'form-control']) !!}
+	{!! Form::select('user_grouping_span_type', $item::$userGroupingSpanTypeAttr, $item->user_grouping_span_type, ['required', 'class' => 'form-control']) !!}
+	<label>基底日</label>
+	{!! Form::input('date', 'start_date', $item->start_date, ['class' => 'form-control']) !!}
 </div>
 <button type="submit" class="btn btn-default">更新</button>
 {!! Form::close() !!}

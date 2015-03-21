@@ -21,7 +21,7 @@ class ItemsController extends Controller {
 	}
 
 	public function getCreate(){
-		return view('items.create');
+		return view('items.create', ['item' => $this->item]);
 	}
 
 	public function postCreate(Request $request, $projectId){

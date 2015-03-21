@@ -32,14 +32,14 @@
 	</tr>
 	<tr>
 		<th>リテンション期間</th>
-		<td>{{{ $item->retention_span}}}</td>
+		<td>{{{ $item::$retentionSpanTypeAttr[$item->retention_span_type]}}}</td>
 	</tr>
 	<tr>
 		<th>ユーザグルーピング期間</th>
-		<td>{{{ $item->user_grouping_span}}}</td>
+		<td>{{{ $item::$userGroupingSpanTypeAttr[$item->user_grouping_span_type]}}}</td>
 	</tr>
 	<tr>
-		<th>開始日</th>
+		<th>基底日</th>
 		<td>{{{ $item->start_date}}}</td>
 	</tr>
 	</tbody>

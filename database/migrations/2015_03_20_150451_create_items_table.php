@@ -21,8 +21,8 @@ class CreateItemsTable extends Migration {
 			$table->string('user_id_column_name');
 			$table->string('other_criteria');
 			$table->string('date_column');
-			$table->integer('retention_span');
-			$table->integer('user_grouping_span');
+			$table->integer('retention_span_type');
+			$table->integer('user_grouping_span_type');
 			$table->date('start_date');
 			$table->timestamps();
 		});
