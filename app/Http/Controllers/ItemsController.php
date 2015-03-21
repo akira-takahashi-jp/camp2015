@@ -27,7 +27,7 @@ class ItemsController extends Controller {
 		$this->item->fill($request->all());
 		$this->item->project_id = $projectId;
 		$this->item->save();
-		return redirect("projects/show/{$projectId}");
+		return redirect("items/report/{$this->item->id}");
 	}
 
 	public function getEdit($id){
@@ -52,8 +52,6 @@ class ItemsController extends Controller {
 		if($request->get('from_date') && $request->get('to_date') && $request->get('retention_loop')){
 			$retentionSummarizer = new RetentionSummarizer($item);
 			$userGroups = $retentionSummarizer->getUserGroups($request->get('from_date'), $request->get('to_date'), $request->get('retention_loop'));
-			//print_r($userGroups[0]->retentionDatas);
-			//exit;
 		}
 		return view('items.report', compact('item', 'request', 'userGroups'));
 	}
