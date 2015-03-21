@@ -13,4 +13,14 @@ class Item extends Model {
 		return $this->belongsTo('App\Models\Project');
 	}
 
+	public function userGroups(){
+		return $this->hasMany('App\Models\UserGroup');
+	}
+
+	public function getUserGroupingSpanOffset(){
+		if($this->user_grouping_span_type === 0) return '+1 day';
+		elseif($this->user_grouping_span_type === 1) return '+1 week';
+		elseif($this->user_grouping_span_type === 2) return '+1 month';
+	}
+
 }
