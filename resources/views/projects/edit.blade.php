@@ -12,8 +12,12 @@
 	{!! Form::input('text', 'table_name', $project->userDefinition ? $project->userDefinition->table_name : null, ['required', 'class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-	<label>ユーザDBのカラム名</label>
-	{!! Form::input('text', 'column_name', $project->userDefinition ? $project->userDefinition->column_name : null, ['required', 'class' => 'form-control']) !!}
+	<label>ユーザIDのカラム名</label>
+	{!! Form::input('text', 'user_id_column', $project->userDefinition ? $project->userDefinition->user_id_column: null, ['required', 'class' => 'form-control']) !!}
+</div>
+<div class="form-group">
+	<label>登録日付のカラム名</label>
+	{!! Form::input('text', 'date_column', $project->userDefinition ? $project->userDefinition->date_column: null, ['required', 'class' => 'form-control']) !!}
 </div>
 <button type="submit" class="btn btn-default">編集</button>
 {!! Form::close() !!}

@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration {
 			$table->bigInteger('project_id');
 			$table->string('name');
 			$table->string('table_name');
-			$table->string('user_id_column_name');
+			$table->string('user_id_column');
 			$table->string('other_criteria');
 			$table->string('date_column');
 			$table->integer('retention_span_type');

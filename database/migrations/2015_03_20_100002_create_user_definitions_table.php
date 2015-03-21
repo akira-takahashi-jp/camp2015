@@ -17,7 +17,8 @@ class CreateUserDefinitionsTable extends Migration {
 			$table->increments('id');
 			$table->bigInteger('project_id');
 			$table->string('table_name');
-			$table->string('column_name');
+			$table->string('user_id_column');
+			$table->string('date_column');
 			$table->timestamps();
 		});
 	}

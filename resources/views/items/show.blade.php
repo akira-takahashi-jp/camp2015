@@ -20,7 +20,7 @@
 	</tr>
 	<tr>
 		<th>ユーザIDカラム名</th>
-		<td>{{{ $item->user_id_column_name}}}</td>
+		<td>{{{ $item->user_id_column}}}</td>
 	</tr>
 	<tr>
 		<th>その他条件</th>

@@ -2,9 +2,8 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Models\Item;
-
+use App\Services\RetentionSummarizer;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller {
@@ -47,9 +46,14 @@ class ItemsController extends Controller {
 	}
 
 	public function getReport(Request $request, $id){
-		$request->get('from_date');
+
 		$item = $this->item->find($id);
-		return view('items.report', compact('item'));
+		if($request){
+			$retentionSummarizer = new RetentionSummarizer($item);
+			$retentionSummarizer->getUserGroups($request->get('from_date'), $request->get('to_date'), $request->get('retention_loop'));
+
+		}
+		return view('items.report', compact('item', 'request'));
 	}
 
 }

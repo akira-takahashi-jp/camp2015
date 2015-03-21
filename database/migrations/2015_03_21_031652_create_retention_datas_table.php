@@ -15,6 +15,9 @@ class CreateRetentionDatasTable extends Migration {
 		Schema::create('retention_datas', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->bigInteger('user_group_id');
+			$table->integer('sequence');
+			$table->integer('value');
 			$table->timestamps();
 		});
 	}

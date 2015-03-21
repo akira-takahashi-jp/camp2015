@@ -9,7 +9,7 @@
 	<label>テーブル名</label>
 	{!! Form::input('text', 'table_name', null, ['required', 'class' => 'form-control']) !!}
 	<label>ユーザIDカラム名</label>
-	{!! Form::input('text', 'user_id_column_name', null, ['required', 'class' => 'form-control']) !!}
+	{!! Form::input('text', 'user_id_column', null, ['required', 'class' => 'form-control']) !!}
 	<label>その他条件</label>
 	{!! Form::input('text', 'other_criteria', null, ['class' => 'form-control']) !!}
 	<label>日付カラム名</label>

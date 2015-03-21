@@ -27,8 +27,12 @@
 		<td>{{{ $project->userDefinition ? $project->userDefinition->table_name : null }}}</td>
 	</tr>
 	<tr>
-		<th>ユーザDBのカラム名</th>
-		<td>{{{ $project->userDefinition ? $project->userDefinition->column_name : null }}}</td>
+		<th>ユーザIDのカラム名</th>
+		<td>{{{ $project->userDefinition ? $project->userDefinition->user_id_column : null }}}</td>
+	</tr>
+	<tr>
+		<th>日付のカラム名</th>
+		<td>{{{ $project->userDefinition ? $project->userDefinition->date_column : null }}}</td>
 	</tr>
 	<tr>
 		<th>更新日時</th>

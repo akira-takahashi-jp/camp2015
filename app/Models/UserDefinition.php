@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserDefinition extends Model {
 
-	protected $fillable = ['table_name', 'column_name'];
+	protected $fillable = ['table_name', 'user_id_column', 'date_column'];
 	protected $guarded = ['project_id'];
 
 	public function project(){
