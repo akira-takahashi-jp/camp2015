@@ -23,4 +23,11 @@ class Item extends Model {
 		elseif($this->user_grouping_span_type === 2) return '+1 month';
 	}
 
+	public function getRetentionSpanOffset($sequence){
+		$offset = $sequence - 1;
+		if($this->retention_span_type === 0) return "+$offset day";
+		elseif($this->retention_span_type === 1) return "+$offset week";
+		elseif($this->retention_span_type === 2) return "+$offset month";
+	}
+
 }

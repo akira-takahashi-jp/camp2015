@@ -16,7 +16,7 @@ class CreateUserGroupsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->bigInteger('item_id');
-			$table->bigInteger('user_grouping_date');
+			$table->date('user_grouping_date');
 			$table->integer('value');
 			$table->timestamps();
 		});
