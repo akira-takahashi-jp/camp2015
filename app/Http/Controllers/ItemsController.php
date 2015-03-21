@@ -15,6 +15,11 @@ class ItemsController extends Controller {
 		$this->item = $item;
 	}
 
+	public function getShow($id){
+		$item = $this->item->find($id);
+		return view('items.show', compact('item'));
+	}
+
 	public function getCreate(){
 		return view('items.create');
 	}
@@ -37,5 +42,8 @@ class ItemsController extends Controller {
 		return redirect("projects/show/{$item->project_id}");
 	}
 
+	public function postDelete($id){
+
+	}
 
 }
