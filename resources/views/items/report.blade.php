@@ -11,6 +11,8 @@
 	<label>リテンション数</label>
 	{!! Form::input('number', 'retention_loop', $request ? $request->get('retention_loop') : null, ['class' => 'form-control']) !!}
 </div>
-<button type="submit" class="btn btn-default">更新</button>
+<button type="submit" class="btn btn-default">表示</button>
+
+
 {!! Form::close() !!}
 @endsection

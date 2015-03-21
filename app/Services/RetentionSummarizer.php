@@ -28,24 +28,30 @@ class RetentionSummarizer
 	{
 
 		$cursorDate = null;
+
 		if ($this->item->user_grouping_span_type === 0) {
 			$cursorDate = $from;
+			$endDate = $to;
+		}elseif ($this->item->user_grouping_span_type === 1) {
+			$week = date('w', strtotime($from));
+			$cursorDate = date('Y-m-d', strtotime("$from -$week day"));
+			$week = date('w', strtotime($to));
+			$endDate = date('Y-m-d', strtotime("$to -$week day"));
+		}elseif ($this->item->user_grouping_span_type === 2) {
+			$cursorDate = date('Y-m-01', strtotime($from));
+			$endDate = date('Y-m-01', strtotime($to));
 		}
 
 		while (true) {
-			//日
-			if ($this->item->user_grouping_span_type === 0) {
-				if ($cursorDate > $to) break;
-				else $cursorDate = $this->getNextUserGroupDate($cursorDate);
-			}
-
-//			echo $cursorDate;
 
 			$userGroup = $this->sumUserGroup($cursorDate);
 
 			for($i=1; $i<=$loopCount; $i++){
 				$this->sumRetentionData($userGroup, $i);
 			}
+
+			$cursorDate = $this->getNextUserGroupDate($cursorDate);
+			if ($cursorDate > $endDate) break;
 		}
 
 	}
