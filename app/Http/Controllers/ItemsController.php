@@ -46,8 +46,10 @@ class ItemsController extends Controller {
 
 	}
 
-	public function getReport($id){
+	public function getReport(Request $request, $id){
+		$request->get('from_date');
 		$item = $this->item->find($id);
 		return view('items.report', compact('item'));
 	}
+
 }

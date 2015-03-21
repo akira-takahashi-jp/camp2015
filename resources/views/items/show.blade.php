@@ -38,10 +38,6 @@
 		<th>ユーザグルーピング期間</th>
 		<td>{{{ $item::$userGroupingSpanTypeAttr[$item->user_grouping_span_type]}}}</td>
 	</tr>
-	<tr>
-		<th>基底日</th>
-		<td>{{{ $item->start_date}}}</td>
-	</tr>
 	</tbody>
 </table>
 @endsection

@@ -18,8 +18,6 @@
 	{!! Form::select('retention_span_type', $item::$retentionSpanTypeAttr, null, ['required', 'class' => 'form-control']) !!}
 	<label>ユーザグルーピング期間</label>
 	{!! Form::select('user_grouping_span_type', $item::$userGroupingSpanTypeAttr, null, ['required', 'class' => 'form-control']) !!}
-	<label>基底日</label>
-	{!! Form::input('date', 'start_date', null, ['class' => 'form-control']) !!}
 </div>
 <button type="submit" class="btn btn-default">作成</button>
 {!! Form::close() !!}

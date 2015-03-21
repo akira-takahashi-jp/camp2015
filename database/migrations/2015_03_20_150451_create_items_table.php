@@ -23,7 +23,6 @@ class CreateItemsTable extends Migration {
 			$table->string('date_column');
 			$table->integer('retention_span_type');
 			$table->integer('user_grouping_span_type');
-			$table->date('start_date');
 			$table->timestamps();
 		});
 	}

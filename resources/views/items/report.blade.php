@@ -2,7 +2,7 @@
 
 @section('content')
 <h2 class="page-header">{{ $item->name }}</h2>
-{!! Form::open(['action' => ['ItemsController@postEdit', $item->id]]) !!}
+{!! Form::open(['method' => 'GET']) !!}
 <div class="form-group">
 	<label>期間</label>
 	{!! Form::input('date', 'from_date', null, ['class' => 'form-control']) !!}
