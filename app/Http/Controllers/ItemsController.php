@@ -48,12 +48,14 @@ class ItemsController extends Controller {
 	public function getReport(Request $request, $id){
 
 		$item = $this->item->find($id);
-		if($request){
+		$userGroups = null;
+		if($request->get('from_date') && $request->get('to_date') && $request->get('retention_loop')){
 			$retentionSummarizer = new RetentionSummarizer($item);
-			$retentionSummarizer->getUserGroups($request->get('from_date'), $request->get('to_date'), $request->get('retention_loop'));
-
+			$userGroups = $retentionSummarizer->getUserGroups($request->get('from_date'), $request->get('to_date'), $request->get('retention_loop'));
+			//print_r($userGroups[0]->retentionDatas);
+			//exit;
 		}
-		return view('items.report', compact('item', 'request'));
+		return view('items.report', compact('item', 'request', 'userGroups'));
 	}
 
 }

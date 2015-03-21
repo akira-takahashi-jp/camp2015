@@ -42,6 +42,8 @@ class RetentionSummarizer
 			$endDate = date('Y-m-01', strtotime($to));
 		}
 
+		$userGroups = [];
+
 		while (true) {
 
 			$userGroup = $this->sumUserGroup($cursorDate);
@@ -50,9 +52,13 @@ class RetentionSummarizer
 				$this->sumRetentionData($userGroup, $i);
 			}
 
+			$userGroups[] = $userGroup;
+
 			$cursorDate = $this->getNextUserGroupDate($cursorDate);
 			if ($cursorDate > $endDate) break;
 		}
+
+		return $userGroups;
 
 	}
 
