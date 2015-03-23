@@ -34,10 +34,6 @@
 		<th>日付のカラム名</th>
 		<td>{{{ $project->userDefinition ? $project->userDefinition->date_column : null }}}</td>
 	</tr>
-	<tr>
-		<th>更新日時</th>
-		<td>{{{ $project->updated_at }}}</td>
-	</tr>
 	</tbody>
 </table>
 <h3>項目一覧</h3>
