@@ -23,6 +23,10 @@
 		<td>{{{ $project->name }}}</td>
 	</tr>
 	<tr>
+		<th>DB</th>
+		<td>{{{ $project->db }}}</td>
+	</tr>
+	<tr>
 		<th>ユーザDBのテーブル名</th>
 		<td>{{{ $project->userDefinition ? $project->userDefinition->table_name : null }}}</td>
 	</tr>

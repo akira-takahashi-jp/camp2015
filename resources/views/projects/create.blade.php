@@ -6,6 +6,8 @@
 <div class="form-group">
 	<label>プロジェクト名</label>
 	{!! Form::input('text', 'name', null, ['required', 'class' => 'form-control']) !!}
+	<label>DB</label>
+	{!! Form::input('text', 'db', null, ['required', 'class' => 'form-control']) !!}
 </div>
 <button type="submit" class="btn btn-default">作成</button>
 {!! Form::close() !!}

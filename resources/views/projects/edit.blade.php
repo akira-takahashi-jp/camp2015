@@ -8,6 +8,10 @@
 	{!! Form::input('text', 'name', $project->name, ['required', 'class' => 'form-control']) !!}
 </div>
 <div class="form-group">
+	<label>DB</label>
+	{!! Form::input('text', 'db', $project->db, ['required', 'class' => 'form-control']) !!}
+</div>
+<div class="form-group">
 	<label>ユーザDBのテーブル名</label>
 	{!! Form::input('text', 'table_name', $project->userDefinition ? $project->userDefinition->table_name : null, ['required', 'class' => 'form-control']) !!}
 </div>

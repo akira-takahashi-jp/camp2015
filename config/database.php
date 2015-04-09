@@ -76,6 +76,19 @@ return [
 			'strict'    => false,
 		],
 
+		'gsdb_prod' => [
+			'driver'    => 'mysql',
+			'host'      => '127.0.0.1',
+			'port'      => '33060',
+			'database'  => 'gsdb',
+			'username'  => 'root',
+			'password'  => 'allied55',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+			'strict'    => false,
+		],
+
 		'pgsql' => [
 			'driver'   => 'pgsql',
 			'host'     => env('DB_HOST', 'localhost'),
