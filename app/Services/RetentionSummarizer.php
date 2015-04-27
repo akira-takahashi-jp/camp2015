@@ -67,12 +67,6 @@ class RetentionSummarizer
 		return date("Y-m-d", strtotime("{$date} {$this->item->getUserGroupingSpanOffset()}"));
 	}
 
-	private function getRetentionDate($userGroupingDate, $sequence)
-	{
-		if($sequence === 1) return $userGroupingDate;
-		return date("Y-m-d", strtotime("{$userGroupingDate} {$this->item->getRetentionSpanOffset($sequence)}"));
-	}
-
 	public function sumUserGroup($date)
 	{
 		$userDefinition = $this->item->project->userDefinition;
@@ -109,8 +103,8 @@ class RetentionSummarizer
 			)
 			->where("$userTable.$userDefinition->date_column", '>=', $date)
 			->where("$userTable.$userDefinition->date_column", '<', $this->getNextUserGroupDate($date))
-			->where("$activityTable.{$this->item->date_column}", '>=', $this->getRetentionDate($date, $sequence))
-			->where("$activityTable.{$this->item->date_column}", '<', $this->getRetentionDate($date, $sequence + 1))
+			->whereRaw("$activityTable.{$this->item->date_column} >= $userTable.$userDefinition->date_column + {$this->item->getRetentionSpanOffsetTimestamp($sequence)}")
+			->whereRaw("$activityTable.{$this->item->date_column} < $userTable.$userDefinition->date_column + {$this->item->getRetentionSpanOffsetTimestamp($sequence + 1)}")
 			->count(DB::raw("DISTINCT $activityTable.{$this->item->user_id_column}"))
 			;
 
