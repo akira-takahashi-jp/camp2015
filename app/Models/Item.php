@@ -30,10 +30,4 @@ class Item extends Model {
 		elseif($this->retention_span_type === 2) return "+$offset month";
 	}
 
-	public function getRetentionSpanOffsetTimestamp($sequence){
-		$offset = $sequence - 1;
-		if($this->retention_span_type === 0) return $offset * 3600 * 24;
-		elseif($this->retention_span_type === 1) return $offset * 3600 * 24 * 7;
-		elseif($this->retention_span_type === 2) return $offset * 3600 * 24 * 30;
-	}
 }
