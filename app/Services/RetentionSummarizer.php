@@ -88,6 +88,9 @@ class RetentionSummarizer
 
 	public function sumRetentionData(UserGroup $userGroup, $sequence){
 
+		$retentionData = RetentionData::where('user_group_id', $userGroup->id)->where('sequence', $sequence)->first();
+		if($retentionData && $retentionData->fixed_flg) return;
+
 		$date = $userGroup->user_grouping_date;
 		$userDefinition = $this->item->project->userDefinition;
 		$userTable = $userDefinition->table_name;
@@ -108,10 +111,18 @@ class RetentionSummarizer
 			->count(DB::raw("DISTINCT $activityTable.{$this->item->user_id_column}"))
 			;
 
-		$retentionData = RetentionData::where('user_group_id', $userGroup->id)->where('sequence', $sequence)->first();
+		$ret = DB::connection($this->item->project->db)
+			->table($userTable)
+			->where("$userTable.$userDefinition->date_column", '>=', $date)
+			->where("$userTable.$userDefinition->date_column", '<', $this->getNextUserGroupDate($date))
+			->selectRaw("MAX($userTable.$userDefinition->date_column + INTERVAL {$this->item->getRetentionSpanOffset($sequence + 1)}) < NOW() AS fixed_flg")
+			->first()
+			;
+
 		if(!$retentionData){
 			$retentionData = new RetentionData();
 			$retentionData->sequence = $sequence;
+			$retentionData->fixed_flg = $ret->fixed_flg;
 		}
 		$retentionData->value = $value;
 		$userGroup->retentionDatas()->save($retentionData);
