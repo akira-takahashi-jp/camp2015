@@ -69,14 +69,17 @@ class RetentionSummarizer
 
 	public function sumUserGroup($date)
 	{
+		$userGroup = UserGroup::where('item_id', $this->item->id)->where('user_grouping_date', $date)->first();
+		if($userGroup && $this->getNextUserGroupDate($date) < date("Y-m-d") ) return $userGroup;
+
 		$userDefinition = $this->item->project->userDefinition;
 		$value = DB::connection($this->item->project->db)
 			->table($userDefinition->table_name)
+			->whereRaw($this->item->other_criteria)
 			->where($userDefinition->date_column, '>=', $date)
 			->where($userDefinition->date_column, '<', $this->getNextUserGroupDate($date))
 			->count();
 
-		$userGroup = UserGroup::where('item_id', $this->item->id)->where('user_grouping_date', $date)->first();
 		if(!$userGroup){
 			$userGroup = new UserGroup();
 			$userGroup->user_grouping_date = $date;
@@ -104,6 +107,7 @@ class RetentionSummarizer
 				'=',
 				"$activityTable.{$this->item->user_id_column}"
 			)
+			->whereRaw($this->item->other_criteria)
 			->where("$userTable.$userDefinition->date_column", '>=', $date)
 			->where("$userTable.$userDefinition->date_column", '<', $this->getNextUserGroupDate($date))
 			->whereRaw("$activityTable.{$this->item->date_column} >= $userTable.$userDefinition->date_column + INTERVAL {$this->item->getRetentionSpanOffset($sequence)}")
