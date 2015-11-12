@@ -4,7 +4,7 @@
 <h2 class="page-header">{{{ $item->name }}} | {{{ $item->project->name }}}</h2>
 <ul class="list-inline">
 	<li>
-		<a href="/items/edit/{{{ $item->id }}}" class="btn btn-primary pull-left">編集</a>
+		<a href="{{ url('items/edit', $item->id) }}" class="btn btn-primary pull-left">編集</a>
 	</li>
 	<li>
 		{!! Form::open(['action' => ['ItemsController@postDelete', $item->id]]) !!}

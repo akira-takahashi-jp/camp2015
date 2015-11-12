@@ -4,7 +4,7 @@
 <h2 class="page-header">プロジェクト</h2>
 <ul class="list-inline">
 	<li>
-		<a href="/projects/edit/{{{ $project->id }}}" class="btn btn-primary pull-left">編集</a>
+		<a href="{{ url('projects/edit', $project->id) }}" class="btn btn-primary pull-left">編集</a>
 	</li>
 	<li>
 		{!! Form::open(['action' => ['ProjectsController@postDelete', $project->id]]) !!}
@@ -44,7 +44,7 @@
 
 <ul class="list-inline">
 	<li>
-		<a href="/items/create/{{{ $project->id }}}" class="btn btn-primary pull-left">項目作成</a>
+		<a href="{{ url('items/create', $project->id) }}" class="btn btn-primary pull-left">項目作成</a>
 	</li>
 </ul><table class="table table-striped table-hover">
 	<thead>
@@ -57,10 +57,10 @@
 	<tbody>
 	@foreach($project->items as $item)
 	<tr>
-		<td><a href="/items/report/{{{ $item->id }}}">{{{ $item->name }}}</a></td>
+		<td><a href="{{ url('items/report', $item->id) }}">{{{ $item->name }}}</a></td>
 		<td>{{{ $item->created_at }}}</td>
 		<td>
-			<a href="/items/edit/{{{ $item->id }}}">編集</a>
+			<a href="{{ url('items/edit', $item->id) }}">編集</a>
 		</td>
 	</tr>
 	@endforeach
