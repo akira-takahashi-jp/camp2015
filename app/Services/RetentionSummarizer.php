@@ -107,7 +107,7 @@ class RetentionSummarizer
 				'=',
 				"$activityTable.{$this->item->user_id_column}"
 			)
-			->whereRaw($this->item->other_criteria)
+			->whereRaw($this->item->other_criteria ? $this->item->other_criteria : 'TRUE')
 			->where("$userTable.$userDefinition->date_column", '>=', $date)
 			->where("$userTable.$userDefinition->date_column", '<', $this->getNextUserGroupDate($date))
 			->whereRaw("$activityTable.{$this->item->date_column} >= $userTable.$userDefinition->date_column + INTERVAL {$this->item->getRetentionSpanOffset($sequence)}")
