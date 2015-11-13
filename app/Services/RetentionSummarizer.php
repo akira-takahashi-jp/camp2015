@@ -75,7 +75,7 @@ class RetentionSummarizer
 		$userDefinition = $this->item->project->userDefinition;
 		$value = DB::connection($this->item->project->db)
 			->table($userDefinition->table_name)
-			->whereRaw($this->item->other_criteria)
+			->whereRaw($this->item->other_criteria ? $this->item->other_criteria : 'TRUE')
 			->where($userDefinition->date_column, '>=', $date)
 			->where($userDefinition->date_column, '<', $this->getNextUserGroupDate($date))
 			->count();
