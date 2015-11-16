@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+<p><a href="{{ url('projects/show', $project->id) }}">← {{ $project->name }}</a></p>
 <h2 class="page-header">項目作成</h2>
 {!! Form::open() !!}
 <div class="form-group">

@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+<p><a href="{{ url('projects/show', $item->project->id) }}">← {{ $item->project->name }}</a></p>
 <h2 class="page-header">{{{ $item->name }}} | {{{ $item->project->name }}}</h2>
 <ul class="list-inline">
 	<li>

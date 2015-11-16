@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
+use App\Models\Project;
 use App\Services\RetentionSummarizer;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,9 @@ class ItemsController extends Controller {
 
 	protected $item;
 
-	public function __construct(Item $item){
+	public function __construct(Item $item, Project $project){
 		$this->item = $item;
+		$this->project = $project;
 	}
 
 	public function getShow($id){
@@ -19,8 +21,9 @@ class ItemsController extends Controller {
 		return view('items.show', compact('item'));
 	}
 
-	public function getCreate(){
-		return view('items.create', ['item' => $this->item]);
+	public function getCreate(Request $request, $projectId){
+		$project = $this->getProject($projectId);
+		return view('items.create', ['item' => $this->item, 'project' => $project]);
 	}
 
 	public function postCreate(Request $request, $projectId){
@@ -54,6 +57,10 @@ class ItemsController extends Controller {
 			$userGroups = $retentionSummarizer->getUserGroups($request->get('from_date'), $request->get('to_date'), $request->get('retention_loop'));
 		}
 		return view('items.report', compact('item', 'request', 'userGroups'));
+	}
+
+	private function getProject($projectId){
+		return $this->project->find($projectId);
 	}
 
 }

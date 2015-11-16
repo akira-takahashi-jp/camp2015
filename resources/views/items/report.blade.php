@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+<p><a href="{{ url('projects/show', $item->project->id) }}">← {{ $item->project->name }}</a></p>
 <h2 class="page-header">{{ $item->name }}</h2>
 {!! Form::open(['method' => 'GET', 'class' => 'form-inline']) !!}
 <div class="form-group">
