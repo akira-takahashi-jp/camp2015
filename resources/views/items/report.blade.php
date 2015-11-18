@@ -6,11 +6,10 @@
 {!! Form::open(['method' => 'GET', 'class' => 'form-inline']) !!}
 <div class="form-group">
 	<label>期間</label>
-	{!! Form::input('date', 'from_date', $request ? $request->get('from_date') : null, ['class' => 'form-control']) !!}
+	{!! Form::input('date', 'from_date', $request->get('from_date') ? $request->get('from_date') : date('Y-m-d', strtotime('-31 day')), ['class' => 'form-control']) !!}
 	〜
-	{!! Form::input('date', 'to_date', $request ? $request->get('to_date') : null, ['class' => 'form-control']) !!}
-	<label>リテンション数</label>
-	{!! Form::input('number', 'retention_loop', $request ? $request->get('retention_loop') : null, ['class' => 'form-control']) !!}
+	{!! Form::input('date', 'to_date', $request->get('to_date') ? $request->get('to_date') : date('Y-m-d', strtotime('-1 day')), ['class' => 'form-control']) !!}
+	{!! Form::input('number', 'retention_loop', $request->get('retention_loop') ? $request->get('retention_loop') : '5', ['class' => 'form-control']) !!} {{ $item::$retentionSpanTypeAttr[$item->retention_span_type] }}分を表示
 </div>
 <button type="submit" class="btn btn-default">表示</button>
 
