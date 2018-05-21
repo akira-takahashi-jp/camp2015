@@ -110,8 +110,8 @@ class RetentionSummarizer
 			->whereRaw($this->item->other_criteria ? $this->item->other_criteria : 'TRUE')
 			->where("$userTable.$userDefinition->date_column", '>=', $date)
 			->where("$userTable.$userDefinition->date_column", '<', $this->getNextUserGroupDate($date))
-			->whereRaw("$activityTable.{$this->item->date_column} >= $userTable.$userDefinition->date_column + INTERVAL {$this->item->getRetentionSpanOffset($sequence)}")
-			->whereRaw("$activityTable.{$this->item->date_column} < $userTable.$userDefinition->date_column + INTERVAL {$this->item->getRetentionSpanOffset($sequence + 1)}")
+			->whereRaw("$activityTable.{$this->item->date_column} >= '$date' + INTERVAL {$this->item->getRetentionSpanOffset($sequence)}")
+			->whereRaw("$activityTable.{$this->item->date_column} < '$date' + INTERVAL {$this->item->getRetentionSpanOffset($sequence + 1)}")
 			->count(DB::raw("DISTINCT $activityTable.{$this->item->user_id_column}"))
 			;
 
